@@ -16,18 +16,8 @@ setImmediate(function(){
         })
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function speak(callback){
+    callback('a')
+}
+speak(console.log)
 console.log('normal exec')
