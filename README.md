@@ -1,4 +1,4 @@
-#learning
+<h1>learning</h1>
 ###个人学习库，包括参考目录，练习代码
 ##By:laerpeeK
 ##Programing language:JavaScript
