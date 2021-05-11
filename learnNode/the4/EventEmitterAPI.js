@@ -1,8 +1,9 @@
 function EventEmitter() {
     //存储和统一管理所有类型的事件
     this._events = Object.create(null)
-    this.defaultMaxListeners = 10
 }
+
+EventEmitter.defaultMaxListeners = 10
 
 //同类型事件监听最大个数
 EventEmitter.prototype.setMaxListeners = function(count) {
@@ -17,7 +18,7 @@ EventEmitter.prototype.getMaxListeners = function(){
 
 //type:事件类型  flag：是否从_events对应事件类型的数组前面添加函数成员
 //on
-EventEmitter.prototype.on = EventEmitter.prototype.addListener =  function(type, callback, flag) {
+EventEmitter.prototype.on = EventEmitter.prototype.addListener =  function(type, callback, flag = false) {
     //兼容继承不存在_events 的情况
     if(!this._events) this._events = Object.create(null)
 
@@ -55,15 +56,20 @@ EventEmitter.prototype.prependListener = function(type, callback) {
 EventEmitter.prototype.once = function(type, callback, flag) {
     let wrap = (...args) => {
         callback(...args)
+        this.removeListener(type, wrap)
     }
     //执行完callback后立即从数组中移除callback
-    this.removeListener(type, wrap)
 
     //存储callback，确保单独使用removeListener删除传入的callback时可以被删除掉
     wrap.realCallback = callback
 
     this.on(type, wrap, flag)
 }
+
+EventEmitter.prototype.prependOnceListener = function(type, callback) {
+    this.once(type,callback,true)
+}
+
 
 EventEmitter.prototype.removeListener = function (type, callback) {
     if(this._events[type]) {
@@ -73,6 +79,15 @@ EventEmitter.prototype.removeListener = function (type, callback) {
     }
 }
 
+EventEmitter.prototype.removeAllListeners = function(type) {
+    if(type) {
+        this._events[type] = [];
+    } else {
+        this._events = Object.create(null)
+    }
+}
+
+
 
 EventEmitter.prototype.emit = function(type, ...args) {
     if(this._events[type]) {
@@ -80,4 +95,14 @@ EventEmitter.prototype.emit = function(type, ...args) {
     }
 }
 
+EventEmitter.prototype.eventNames = function() {
+    return Object.keys(this._events)
+}
+
+EventEmitter.prototype.listeners = function(type) {
+    return this._events[type]
+}
+
+
 module.exports = EventEmitter;
+
