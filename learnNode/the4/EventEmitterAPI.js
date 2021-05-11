@@ -15,7 +15,6 @@ EventEmitter.prototype.getMaxListeners = function(){
     return this._count || EventEmitter.defaultMaxListeners
 }
 
-
 //type:事件类型  flag：是否从_events对应事件类型的数组前面添加函数成员
 //on
 EventEmitter.prototype.on = EventEmitter.prototype.addListener =  function(type, callback, flag = false) {
