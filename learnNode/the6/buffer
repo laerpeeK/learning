@@ -1,0 +1,12 @@
+Buffer:
+    0.Buffer是二进制数据
+    1.在C++层面申请内存，在JavaScript层面分配内存
+    2.支持的字符串编码类型
+        ASCII, UTF-8, UTF-16LE/UCS-2, Base64, Binary, Hex
+    3.
+        new Buffer(str,[encoding])
+        buf.toString([encoding],[start],[end])
+        Buffer.isEncoding(encoding)
+    4.为了支持更多转换：
+        iconv/iconv-lite
+    5.
