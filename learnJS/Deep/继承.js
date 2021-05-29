@@ -7,13 +7,15 @@ problems: 1.引用类型的属性被所有实例共享
 function Parent () {
     this.names =    'aa'
 }
+
 Parent.prototype.getName = function() {
     console.log(this.names)
 }
 
 function Child() {
-
 }
+
+
 Child.prototype = new Parent()
 var child1 = new Child()
 child1 = child1.names+'s'

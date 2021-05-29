@@ -49,3 +49,33 @@ Person.prototype = {
         console.log(this.name)
     }
 }
+
+/*
+4.1动态原型
+构造函数的 prototype 属性指向了实例的原型
+ */
+function Person(name) {
+    this.name = name
+    if(typeof this.getName !== 'function') {
+        Person.prototype = {
+            constructor: Person,
+            getName: function() {
+                console.log(this.name)
+            }
+        }
+        return new Person(name)
+    }
+}
+
+/*
+5.1寄生构造函数模式
+ */
+function Person(name) {
+    var o = new Object()
+    o.getName = function() {
+        console.log(this.name)
+    }
+    return o
+}
+
+

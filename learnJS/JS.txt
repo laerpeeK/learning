@@ -1,0 +1,30 @@
+# JavaScript深入之从原型到原型链
+
+关键属性：
+
+```javascript
+ constructor、prototype、__proto__
+```
+
+构造函数：
+
+```javascript
+Person.constructor === Function //true
+Person.__proto__ === Function.prototype //true
+Person.prototype === Person构造的实例的__proto__
+Person: 
+	function Person(){
+        	prototype: {constructor: function Person(), <prototype>},
+            <prototype>
+    }       
+```
+
+借用构造函数构造的实例：
+
+```
+jack = new Person()
+jack.__proto__ === Person.prototype //true
+jack.constructor === Person //true
+
+```
+
