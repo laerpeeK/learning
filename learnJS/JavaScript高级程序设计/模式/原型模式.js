@@ -23,3 +23,5 @@ coonsole.log(Function.prototype.__proto__ === Object.prototype) //true
 console.log(person1.__proto__ === Person.prototype) // true
 console.log(person1.constructor === Person) // true
 console.log(person1.prototype === undefined) // true
+
+
