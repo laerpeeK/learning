@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    {{reversedMessage}}
+</div>
+<Script>
+    vm = new Vue({
+        el: '#app',
+        data: {
+            message:'laerpeek'
+        },
+        computed: { // 计算属性
+            reversedMessage(){
+                return this.message.split('').reverse().join('')
+            }
+        }
+    })
+</Script>
+</body>
+</html>

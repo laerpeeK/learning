@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{a}}
+</div>
+<script>
+    var data = {a:1}
+    var vm = new Vue({
+        el: '#app',
+        data: data,
+        created: function() {
+            console.log(this.a) // 1
+            console.log(this.$el) // undefined
+        },
+        mounted: function() {
+            console.log(this.$el) // <div id='app'>
+        },
+        updated: function() {
+            console.log('updated') //数据改变调用
+        },
+        destroyed: function() {
+            console.log('destroyed') //实例销毁时使用
+        }
+    })
+
+    vm.$data === data // true
+    vm.$el === document.getElementById('app') //true
+
+    vm.$watch('a', function(newValue, oldValue){
+        console.log('a change')
+    }) //a变化时变化
+</script>
+</body>
+</html>
