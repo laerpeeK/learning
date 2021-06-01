@@ -3,7 +3,7 @@ function SuperType(name) {
     this.name = name
 }
 function SubType(name) {
-    SuperType.call(this,'jack')
+    SuperType.call(this,name)
 }
 
 var instance1 = new SubType()
