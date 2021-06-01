@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div :class="{active: isActive, 'text-danger': hasError}" id="app">
+
+</div>
+<script>
+    vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            hasError: false
+        }
+    })
+</script>
+</body>
+</html>
