@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-if="loginType === 'username' ">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username">
+    </p>
+    <p v-else>
+        <label>Email</label>
+        <input placeholder="Enter your Email" key="password">
+    </p>
+    <p v-show="show"> //display: none
+        vShow
+    </p>
+    <button @click="typeChange">Toggle login type</button>
+</div>
+<script>
+    vm = new Vue({
+        el: '#app',
+        data: {
+            loginType: 'username',
+            show: false
+        },
+        methods: {
+            typeChange(){
+                this.loginType = this.loginType === 'username' ? 'email':'username'
+            }
+        }
+    })
+</script>
+</body>
+</html>

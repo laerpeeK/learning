@@ -606,6 +606,84 @@ bind()方法会创建一个新的函数实例，其this值会被绑定到传给b
 
 
 
+## 第十一章：期约与异步函数
+
+Promise是一个有状态的对象，可能处于pending、fulfilled, rejected三种状态之一。且不可逆。
+
+Promise的状态是私有的，不能通过JavaScript检测到。
+
+每个Promise只要状态切换为fulfilled，就会有一个私有的内部值（value）。
+
+类似地，每个期约只要状态切换为rejected，就会有一个私有的内部理由（reason）
+
+executor函数主要有两项职责：
+
+​        1.初始化Promise的异步行为，即改变每个Promise的状态
+
+​        2.控制状态的最终转换，通过resolve(), reject()实现状态变化到fulfilled, rejected。
+
+​		3.同步执行的
+
+静态方法：
+
+​		Promise.resolve()：实例化一个解决的Promise
+
+​		Promise.reject()：实例化一个拒绝的Promise
+
+​		Promise.reject()并没有照搬Promise.resolve()的幂等逻辑
+
+​		
+
+try...catch...是同步模式捕获错误
+
+##### Promise的实例方法：
+
+Promise.prototype.then() :接收最多两个参数：onResolved处理程序和onRejected处理程序。这两个参数都是可选的，如果提供的话，则会在期约分别进入“兑现”和“拒绝”状态时执行。
+
+传给then()的任何非函数类型的参数都会被静默忽略。
+
+如果想只提供onRejected参数，那就要在onResolved参数的位置上传入undefined。
+
+Promise.prototype.catch(onRejected)  equalTo  Promise.prototype.then(null, onRejected)
+
+Promise.prototype.finally(onFinally) :主要用于添加清理代码。 与状态无关的方法，在大多数情况下它将表现为父期约的传递。如果返回的是一个待定的期约，或者onFinally处理程序抛出了错误（显式抛出或返回了一个拒绝期约），则会返回相应的期约（待定或拒绝）。只要期约一解决，新期约仍然会原样后传初始的期约。
+
+抛出异常会返回拒绝的Promise，onRejected在捕获错误后不抛出异常是符合Promise的行为，应该返回一个Promise.resolve
+
+非重入（non-reentrancy）: 当Promise进入fulfiiled/rejected状态时，与该状态相关的处理程序仅仅会被**排期**，而非立即执行。
+
+Promise可以以任何理由拒绝，包括undefined，但最好统一使用object:Error。这样做主要是因为创建错误对象可以让浏览器捕获错误对象中的栈追踪信息，而这些信息对调试是非常关键的
+
+在Promise中抛出错误时，因为错误实际上是从消息队列中异步抛出的，所以并不会阻止运行时继续执行同步指令
+
+Promise连锁：每个Promise实例方法都会返回一个新的Promise对象，而这个对象又有自己的实例方法。
+
+Promise Graph:  Promise连锁可以构建有向非循环图的结构
+
+
+
+Promise静态方法：
+
+Promise.all():
+
+​	1.会在一组Promise全部解决后再解决
+
+​	2.接收一个可迭代对象，返回一个新Promise
+
+​	3.一次拒绝导致最终Promise拒绝
+
+​	4.存在永远待定的情况
+
+
+
+Promise.race():
+
+​	1.返回一组集合中最先解决或拒绝的Promise的镜像
+
+​	2.接收一个可迭代对象
+
+​	3.
+
 
 
 ## 第十八章：动画与Canvas图形

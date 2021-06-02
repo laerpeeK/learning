@@ -9,8 +9,11 @@ function addFive(x) {
 }
 
 function addTen(x) {
-    return [addTwo, addThree, addFive]
-        .reduce((promise, fn) => promise.then(fn), Promise.resolve(x));
+    return [addTwo,addThree,addFive]
+        .reduce(
+            (promise, fn) =>
+            promise.then(fn),//preValue currentValue
+            Promise.resolve(x)); //initialValue
 }
 
 addTen(5).then(console.log) //15

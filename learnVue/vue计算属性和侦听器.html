@@ -7,21 +7,56 @@
 </head>
 <body>
 <div id="app">
-    {{message}}
-    {{reversedMessage}}
+<!--    {{message}}-->
+<!--    {{reversedMessage}}-->
+    {{fullName}}
 </div>
 <Script>
+    /*
     vm = new Vue({
         el: '#app',
         data: {
-            message:'laerpeek'
+            message:'laerpeek',
+            num: 0,
+            numAdd: 0
         },
         computed: { // 计算属性
             reversedMessage(){
                 return this.message.split('').reverse().join('')
             }
+        },
+        watch: {
+            num: function() {
+                this.numAdd += this.num
+            },
         }
     })
+
+     */
+
+    //get&set 计算属性
+    vmComputed = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'Fang',
+            lastName: 'Zhijie',
+        },
+        computed: {
+            fullName: {
+                get: function() {
+                    return this.firstName + ' ' + this.lastName
+                },
+                set: function(newValue) {
+                    var names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[names.length-1]
+                }
+            }
+        }
+    })
+
+
+    //侦听器
 </Script>
 </body>
 </html>
