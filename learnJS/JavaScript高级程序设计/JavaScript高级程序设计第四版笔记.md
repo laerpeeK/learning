@@ -682,9 +682,63 @@ Promise.race():
 
 ​	2.接收一个可迭代对象
 
-​	3.
 
 
+异步函数 -async
+
+异步函数如果使用return关键字返回了值（如果没有return则会返回undefined），这个值会被Promise.resolve()包装成一个期约对象。
+
+与在期约处理程序中一样，在异步函数中抛出错误会返回拒绝的期约
+
+异步函数主要针对不会马上完成的任务，所以自然需要一种暂停和恢复执行的能力，使用await关键字可以暂停异步函数代码的执行，等待期约解决。
+
+await关键字也只能直接出现在异步函数的定义中。
+
+JavaScript运行时在碰到await关键字时，会记录在哪里暂停执行。等到await右边的值可用了，JavaScript运行时会向消息队列中推送一个任务，这个任务会恢复异步函数的执行。
+
+
+
+
+
+## 第十二章：BOM对象
+
+CSS像素是We b开发中使用的统一像素单位。这个单位的背后其实是一个角度：0.0213°。
+
+所有超时执行的代码（函数）都会在全局作用域中的一个匿名函数中运行，因此函数中的this值在非严格模式下始终指向window，而在严格模式下是undefined。如果给setTimeout()提供了一个箭头函数，那么this会保留为定义它时所在的词汇作用域。
+
+location:
+
+location.search ?a=aaa&b=bbb
+
+locations.hash = '#contents'
+
+URLSearchParams  API: get(), set(), delete()
+
+window.location和document.location指向同一对象
+
+history对象表示当前窗口首次使用以来用户的导航历史记录。
+
+## 第十三章：客户端能力检测
+
+## 第十四章：DOM
+
+## 第十五章：DOM扩展
+
+## 第十六章：DOM2和DOM3
+
+## 第十七章：事件
+
+JavaScript与HTML的交互是通过事件实现的，事件代表文档或浏览器窗口中某个有意义的时刻。
+
+DOM2 Events规范规定事件流分为3个阶段：事件捕获、到达目标和事件冒泡。
+
+在DOM中发生事件时，所有相关信息都会被收集并存储在一个名为event的对象中。
+
+在事件处理程序内部，this对象始终等于currentTarget的值，而target只包含事件的实际目标。
+
+stopPropagation()方法用于立即阻止事件流在DOM结构中传播，取消后续的事件捕获或冒泡。
+
+event对象只在事件处理程序执行期间存在，一旦执行完毕，就会被销毁。
 
 ## 第十八章：动画与Canvas图形
 
