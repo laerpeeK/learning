@@ -9,3 +9,4 @@
   Express: https://github.com/expressjs/express<br/>
   Webpack:https://www.bilibili.com/video/BV1e7411j7T5?from=search&seid=12812256094487876010<br/>
   TypeScript: https://www.bilibili.com/video/BV1F7411c7m5<br/>
+  Vue: https://www.bilibili.com/video/BV15741177Eh?from=search&seid=12816044387939438071
