@@ -3,7 +3,9 @@
 <h2>Programing language:JavaScript</h2>
 <h2>Reference:</h2>
   NodeJS:《深入浅出NodeJS》<br/>
-  JavaScript高级程序设计第四版<br/>
+  JavaScript:
+        高级程序设计第四版<br/>
+        现代JavaScript教程：https://github.com/javascript-tutorial/zh.javascript.info<br/>
   JavaScript异步编程：设计快速响应的网页应用<br/>
   JS_polyfill: MDN<br/>
   Express: https://github.com/expressjs/express<br/>
