@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三角形</title>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        function draw() {
+            var canvas = document.getElementById('rect')
+            if(canvas.getContext) {
+                var ctx = canvas.getContext('2d')
+
+                ctx.beginPath()
+                ctx.moveTo(25, 25)
+                ctx.lineTo(105,25)
+                ctx.lineTo(25,105)
+                ctx.fill()
+
+
+                ctx.beginPath()
+                ctx.moveTo(125,125)
+                ctx.lineTo(125,45)
+                ctx.lineTo(45,125)
+                ctx.closePath()
+                ctx.stroke()
+            }
+        }
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="rect" width="150px" height="150px">
+    该浏览器不支持canvas, 请更换浏览器。
+</canvas>
+</body>
+</html>
