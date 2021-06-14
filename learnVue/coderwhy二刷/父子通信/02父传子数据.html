@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn :movies="movies" :message="message"></cpn>
+</div>
+<script>
+   const cpn = {
+       template: `
+       <div>
+       <ul>
+       <li v-for="item in movies">{{item}}</li>
+        </ul>
+        <h1>{{message}}</h1>
+        </div>
+        `,
+       props: {
+           message: {
+               type: String,
+               default: 'message',
+               required: true
+           },
+           movies: {
+               type: Array,
+               default() {
+                   return []
+               }
+           }
+       }
+   }
+
+   const app = new Vue({
+       el: '#app',
+       data: {
+           movies:['a','b','c','d'],
+           message: 'jack'
+       },
+       components: {
+           cpn
+       }
+   })
+</script>
+</body>
+</html>

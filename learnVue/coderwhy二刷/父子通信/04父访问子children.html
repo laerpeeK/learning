@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="a"></cpn>
+    <button @click="btnClick">click</button>
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello parent'
+        },
+        methods: {
+            btnClick() {
+                console.log(this.$children)
+                this.$children[0].showMessage()
+                console.log(this.$refs.a.name)
+            }
+        },
+        components: {
+            cpn: {
+                template: `
+                    <div>我是子组件</div>
+                `,
+                methods: {
+                    showMessage() {
+                        console.log('children - showMessage')
+                    }
+                },
+                data() {
+                    return {
+                        name: 'children name'
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

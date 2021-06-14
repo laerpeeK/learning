@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn :c-info="info"></cpn>
+</div>
+<script>
+    const cpn = {
+        template: `
+        <h1>{{cInfo}}</h1>
+        `,
+        props: {
+            cInfo: {
+                type: Object
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            info: {
+                name: 'why',
+                age: 18,
+                height: 1.88
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</body>
+</html>
