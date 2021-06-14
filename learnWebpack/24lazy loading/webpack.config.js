@@ -5,14 +5,7 @@ process.env.NODE_ENV = 'production'
 
 
 module.exports = {
-    /*
-    entry: './src/js/index.js
-     */
-    //多入口:有一个入口，最终输出就有一个bundle
-    entry: {
-      main: './src/js/index.js',
-      test: './src/js/test.js'
-    },
+    entry: './src/js/index.js',
     output: {
         filename: 'js/[name].[contenthash:10].js',
         path: resolve(__dirname, 'build')
@@ -26,5 +19,10 @@ module.exports = {
             }
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     mode: 'production',
 }
