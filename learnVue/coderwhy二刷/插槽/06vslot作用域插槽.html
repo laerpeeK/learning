@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn>
+        <template v-slot:default="user">
+            {{user.user.firstName}}
+        </template>
+        <template v-slot:last = "zz">
+            {{zz.user.lastName}}
+        </template>
+    </cpn>
+</div>
+<script>
+    /*
+    v-slot 只能添加在 <template> 上 (只有一种例外情况)
+     */
+    const cpn = {
+        template: `
+          <div>
+              <slot :user="user">
+                {{user.lastName}}
+              </slot>
+              <slot name="last" :user="user">
+              </slot>
+          </div>
+        `,
+        data(){
+            return {
+                user:{
+                    firstName: 'Fang',
+                    lastName: 'Zhijie'
+                }
+            }
+        },
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</body>
+</html>

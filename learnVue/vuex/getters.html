@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-8yvWnsU6LFumnVSXB10xSFewFVCar2ZbXD7W1kIojnBX+EJgZS0rVrSEBtTZTKXN" src="https://lib.baomitu.com/vuex/3.0.1/vuex.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+</div>
+<script>
+    Vue.use(Vuex)
+
+    const store = new Vuex.Store({
+        state: {
+            todos: [
+                {id: 1, text: '...', done: true},
+                {id: 2, text: '...', done: false}
+            ]
+        },
+        getters: {
+            doneTodos: state => {
+                return state.todos.filter(todo => todo.done)
+            },
+            doneTodosCount: (state, getters) => {
+                return getters.doneTodos.length
+            }
+        }
+    })
+    
+    const Counter = {
+        template: `<div>{{count}}</div>`,
+        computed: {
+            count() {
+                return store.state.count
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        store,
+        components: {
+            Counter,
+        }
+    })
+</script>
+</body>
+</html>

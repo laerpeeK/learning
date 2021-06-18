@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-8yvWnsU6LFumnVSXB10xSFewFVCar2ZbXD7W1kIojnBX+EJgZS0rVrSEBtTZTKXN" src="https://lib.baomitu.com/vuex/3.0.1/vuex.min.js"></script>
+</head>
+<body>
+<script>
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            increment(state) {
+                state.count++
+            }
+        },
+        actions: {
+            checkout({commit, state}, products) {
+                //把当前购物车的物品备份起来
+                const savedCartItems = [...state.cart.added]
+                //发出结账请求，然后清空购物车
+                commit(types.CHECKOUT_REQUEST)
+                //购物API接受一个成功回调和一个失败回调
+                shop.buyProducts(
+                    products,
+                    //成功操作
+                    () => commit(type.CHECKOUT_SUCCESS),
+                    //失败操作
+                    () => commit(types.CHECKOUT_FAILURE, savedCartItems)
+                )
+            }
+        }
+    })
+</script>
+</body>
+</html>

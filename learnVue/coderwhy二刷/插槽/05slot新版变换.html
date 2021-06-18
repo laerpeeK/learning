@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn>
+        <template v-slot:header>
+            <h1>Here might be a page title</h1>
+        </template>
+        <template v-slot:default>
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+        </template>
+        <template v-slot:footer>
+            <p>Here's some contact info</p>
+        </template>
+    </cpn>
+</div>
+<script>
+    /*
+    v-slot 只能添加在 <template> 上 (只有一种例外情况)
+     */
+    //具名
+    const cpn = {
+        template: `
+          <div>
+            <header>
+              <slot name="header"></slot>
+            </header>
+            <main>
+              <slot></slot>
+            </main>
+            <footer>
+              <slot name="footer"></slot>
+            </footer>
+          </div>
+        `,
+        data: {
+            user:{
+                firstName: 'Fang',
+                lastName: 'Zhijie'
+            }
+        }
+    }
+    //作用域
+    const ccpn = {
+
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</body>
+</html>

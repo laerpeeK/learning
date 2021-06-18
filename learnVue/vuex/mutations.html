@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-8yvWnsU6LFumnVSXB10xSFewFVCar2ZbXD7W1kIojnBX+EJgZS0rVrSEBtTZTKXN" src="https://lib.baomitu.com/vuex/3.0.1/vuex.min.js"></script>
+</head>
+<body>
+<script>
+    Vue.use(Vuex)
+
+    const store = new Vuex.Store({
+        state: {
+            count: 1
+        },
+        mutations: {
+            increment(state, payload) {
+                state.count += payload.amount
+            }
+        }
+    })
+</script>
+</body>
+</html>
