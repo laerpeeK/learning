@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mixin</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<script>
+    Vue.mixin({
+        mounted() {
+            console.log('mounted')
+        },
+        created: function() {
+            this.hello()
+        },
+        methods: {
+            hello: function() {
+                console.log('hello from mixin!')
+            }
+        },
+        data() {
+            return {
+                message: 'hello',
+                foo: 'abc'
+            }
+        }
+    })
+    // var myMixin = {
+    //     created: function() {
+    //         this.hello()
+    //     },
+    //     methods: {
+    //         hello: function() {
+    //             console.log('hello from mixin!')
+    //         }
+    //     },
+    //     data() {
+    //         return {
+    //             message: 'hello',
+    //             foo: 'abc'
+    //         }
+    //     }
+    // }
+
+    var Component = Vue.extend({
+        // mixins: [myMixin]
+    })
+
+    var component = new Component() //hello from mixin!
+
+
+    new Vue({
+        // mixins: [myMixin],
+        data: function() {
+            return {
+                message: 'goodbye',
+                bar: 'def'
+            }
+        },
+        created() {
+            console.log(Object.entries(this.$data)) //Vue实例hello  [ "goodbye", "def", "abc" ]
+        },
+        methods: {
+            hello() {
+                console.log('Vue实例hello')
+            }
+        }
+    })
+    //Vue.extend() 也使用同样的策略（组件or实例优先）对冲突进行合并
+
+    //Vue.config.optionMergeStrategies 自定义选项合并策略
+
+</script>
+</body>
+</html>
