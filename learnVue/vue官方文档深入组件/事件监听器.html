@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn @inject="show"></cpn>
+    <cpn @inject.once="show2"></cpn>
+    <cpn @inject.off="show2"></cpn>
+    <cpn @inject="show"></cpn>
+</div>
+<script>
+    const cpn = Vue.extend({
+        template:`
+          <div>
+            <div>{{name}}</div>
+            <button @click="test">Click</button>
+          </div>
+        `,
+        data() {
+            return {
+                name: 'Vue一代组件'
+            }
+        },
+        methods: {
+            test() {
+                console.log('test')
+                this.$emit('inject', this.name)
+            }
+        }
+    })
+    const app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                name: 'Vue实例'
+            }
+        },
+        components: {
+            cpn,
+        },
+        methods: {
+            show() {
+                console.log('Vue 发射一个事件,传输一次数据')
+            },
+            show2() {
+                console.log('show2')
+            }
+        }
+    })
+</script>
+</body>
+</html>

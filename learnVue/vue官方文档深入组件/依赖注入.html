@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+</div>
+<script>
+    const ccpn = Vue.extend({
+        template: `<div>{{getName}}</div>`,
+        data() {
+            return {
+                name: 'ccpn'
+            }
+        },
+        inject: ['getName']
+    })
+
+
+    const cpn = Vue.extend({
+        template: `
+          <div>
+          {{count}}
+          <ccpn></ccpn>
+          </div>`,
+        data(){
+            return {
+                count: 0
+            }
+        },
+        components: {
+            ccpn,
+        }
+    })
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name: 'jack',
+            age: 23
+        },
+        components: {
+            cpn
+        },
+        provide: function() {
+            return {
+                getName: 'Vue后代通信'
+            }
+        }
+    })
+</script>
+</body>
+</html>
