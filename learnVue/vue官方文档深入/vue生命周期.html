@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue生命周期</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>
+        reference :https://blog.csdn.net/qq_41889956/article/details/91378695
+        初始化默认事件和生命周期
+        ->beforeCreate
+        ->初始化数据和事件，data, methods
+        ->created --- 数据操作
+        ->编译模板字符串，在内存中将其渲染为内存DOM
+        ->beforeMount
+        ->内存虚拟DOM挂载到浏览器页面上
+        ->mounted --- 可操作DOM
+        ->运行阶段，data中数据发生改变，虚拟DOMdata数据更换
+        ->beforeUpdate
+        ->页面数据与虚拟DOMdata数据一致
+        ->updated
+        ->页面关闭
+        ->beforeDestory 销毁前，还可以操作data, methods
+        ->destroyed 已经销毁
+    </p>
+    <span id="test">test</span>
+    <span id="afterCreated">{{name}}</span>
+<!--    <span>{{zoo}}</span>-->
+</div>
+<script>
+    //每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name: 'jack',
+            zoo: 'jack'
+        },
+        //在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
+        created() {
+            console.log(this.name) //jack
+            console.log(document.getElementById('test').innerHTML) //test
+            console.log(document.getElementById('afterCreated').innerHTML) //{{name}}
+            setTimeout(() => {
+                this.zoo = 'zhijieFang'
+            },1000)
+        },
+        //在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作
+        mounted() {
+            console.log(document.getElementById('afterCreated').innerHTML) //jack
+        },
+        //只有在之前设置好的data发生变化且页面因此重新渲染后才会进入该钩子
+        updated() {
+            console.log(this.name) //zhijieFang
+        },
+        //离开页面
+        destroyed() {
+
+        }
+    })
+</script>
+</body>
+</html>
