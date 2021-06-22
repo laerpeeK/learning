@@ -5,6 +5,7 @@ Person.prototype.getName = function() {
     return this.name
 }
 
+//
 var objectFactory = function(){
     var obj = new Object() //从Object.prototype上克隆一个空对象
     Constructor = [].shift.call(arguments) //取得外部传入的构造器
