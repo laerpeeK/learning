@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-EnzMJi5PirMz1dgUr9a4DUHwg7e71+fxk3jLLfJn1vljGydxX8c6bdDYdPDE8224" src="https://lib.baomitu.com/vue-router/3.0.2/vue-router.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+    const User = {
+        template: `
+            <div>
+            User{{$route.params.id}}
+            <router-view></router-view>
+            </div>
+            `,
+    }
+
+    const Error = {
+        template: `<div>{{$route.params}}</div>`//{ "pathMatch": "/" }
+    }
+
+    const UserProfile = {
+        template: `<div>UserProfile</div>`
+    }
+
+    const UserPosts = {
+        template: `<div>UserPosts</div>`
+    }
+
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/user/:id',
+                component: User,
+                children: [
+                    {
+                        path: 'profile',
+                        component: UserProfile
+                    },
+                    {
+                        path: 'posts',
+                        component: UserPosts
+                    }
+                ]
+            },
+            {path: '*', component: Error}
+        ]
+    })
+
+    const app = new Vue({
+        el: '#app',
+        router,
+    })
+</script>
+</body>
+</html>
