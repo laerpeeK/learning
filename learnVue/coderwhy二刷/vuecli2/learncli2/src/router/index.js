@@ -23,11 +23,10 @@ const routes = [
   {
     path: '/home',
     component: Home,
+    meta: {
+      title: '首页'
+    },
     children: [
-      {
-        path: '',
-        redirect: 'news'
-      },
       {
         path: 'news',
         component: HomeNews
@@ -41,14 +40,27 @@ const routes = [
   {
     path: '/about',
     component: About,
+    meta: {
+      title: '关于'
+    },
   },
   {
     path: '/user/:userId',
-    component: User
+    component: User,
+    meta: {
+      title: '用户'
+    }
   },
   {
     path: '/profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      title: '档案'
+    },
+    beforeEnter: (to,from,next) => {
+      console.log('profile')
+      next()
+    }
   }
 ]
 const router = new Router({
@@ -59,9 +71,17 @@ const router = new Router({
 })
 
 //全局导航守卫
+
+//前置 guard
 router.beforeEach((to, from, next) => {
+  //from 跳转至 to
+  document.title = to.matched[0].meta.title
   next()
 })
 
+//后置 hook
+// router.afterEach((to,from)=>{
+//   console.log('afterEach')
+// })
 //将router实例导入Vue实例中
 export default router

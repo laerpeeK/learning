@@ -9,7 +9,18 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  created() {
+  },
+  destroyed() {
+    console.log('destroyed')
+  },
+  activated() {
+    this.$router.push(this.path)
+  },
+  deactivated() {
+
+  }
 }
 </script>
 
