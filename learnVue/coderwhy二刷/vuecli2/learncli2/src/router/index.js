@@ -5,6 +5,7 @@ import Router from 'vue-router'
 const Home = () => import('../components/Home')
 const About = () => import('../components/About')
 const User = () => import('../components/User')
+const Profile = () => import('../components/Profile')
 
 const HomeNews = () => import('../components/HomeNews')
 const HomeMessage = () => import('../components/HomeMessage')
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/user/:userId',
     component: User
+  },
+  {
+    path: '/profile',
+    component: Profile
   }
 ]
 const router = new Router({
@@ -51,6 +56,11 @@ const router = new Router({
   routes,
   mode: 'history',
   linkActiveClass: 'active'
+})
+
+//全局导航守卫
+router.beforeEach((to, from, next) => {
+  next()
 })
 
 //将router实例导入Vue实例中
