@@ -14,7 +14,7 @@
 <!--    通过代码修改路由-->
     <button @click="homeClick">首页</button>
     <button @click="profileClick">档案</button>
-    <keep-alive>
+    <keep-alive exclude="Profile">
       <router-view />
     </keep-alive>
   </div>

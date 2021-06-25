@@ -57,10 +57,10 @@ const routes = [
     meta: {
       title: '档案'
     },
-    beforeEnter: (to,from,next) => {
-      console.log('profile')
-      next()
-    }
+    // beforeEnter: (to,from,next) => {
+    //   console.log('profile')
+    //   next()
+    // }
   }
 ]
 const router = new Router({

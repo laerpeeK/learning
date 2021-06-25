@@ -10,7 +10,13 @@
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      path: '/home/news'
+    }
+  },
   created() {
+    console.log('Home')
   },
   destroyed() {
     console.log('destroyed')
@@ -18,8 +24,10 @@ export default {
   activated() {
     this.$router.push(this.path)
   },
-  deactivated() {
-
+  //组件内导航守卫
+  beforeRouteLeave(to, from, next){
+    this.path = this.$route.path
+    next()
   }
 }
 </script>
