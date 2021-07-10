@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="02缓动动画.js"></script>
+</head>
+<body>
+<div style="position: absolute;background: blue" id="div">我是div</div>
+<script>
+    var div = document.getElementById('div')
+    var animate = new Animate(div)
+    animate.start('left',500, 1000, 'strongEaseOut')
+</script>
+</body>
+</html>

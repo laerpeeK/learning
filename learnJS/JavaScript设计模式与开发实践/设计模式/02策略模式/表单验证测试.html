@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证测试</title>
+    <script src="03表单验证.js"></script>
+</head>
+<body>
+<form action="http:// xxx.com/register" id="registerForm" method="post">
+    <label>
+        UserName:<input type="text" name="userName">
+    </label>
+    <label>
+        Password:<input type="text" name="password">
+    </label>
+    <label>
+        phoneNumber:<input type="text" name="phoneNumber">
+    </label>
+    <button type="submit">Submit</button>
+</form>
+<script>
+
+    var registerForm = document.getElementById('registerForm')
+    var validateFunc = function() {
+        var validator = new Validator()
+
+        validator.add(registerForm.userName, 'isNotEmpty', '用户名不能为空')
+        validator.add(registerForm.password, 'minLength:6', '密码长度不能少于6位')
+        validator.add(registerForm.phoneNumber, 'isMobile', '手机号码格式不正确')
+
+        var errorMsg = validator.start()
+        return errorMsg
+    }
+    registerForm.onsubmit = function() {
+        var errorMsg = validateFunc()
+        if(errorMsg) {
+            alert(errorMsg)
+            return false
+        }
+    }
+</script>
+</body>
+</html>
