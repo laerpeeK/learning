@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单例测试</title>
+    <script src="04通用惰性单例模式.js"></script>
+</head>
+<body>
+<button id="login_btn">登录</button>
+<script>
+    document.getElementById('login_btn').onclick = function() {
+        console.log('click')
+        var loginLayer = createSingleLoginLayer()
+        loginLayer.src = 'http://baidu.com'
+    }
+</script>
+</body>
+</html>
