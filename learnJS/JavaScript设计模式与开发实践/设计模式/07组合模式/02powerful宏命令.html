@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更强大的宏命令</title>
+</head>
+<body>
+<button id="btn">按我</button>
+</body>
+<script>
+    var MacroCommand = function() {
+        return {
+            commandsList: [],
+            add(command) {
+                this.commandsList.push(command)
+            },
+            execute() {
+                for(var i = 0, command; command = this.commandsList[i++];) {
+                    command.execute();
+                }
+            }
+        }
+    };
+
+    var openAcCommand = {
+        execute() {
+            console.log('open AC')
+        },
+        add() {
+            throw new Error('叶对象不能添加子节点')
+        }
+    }
+
+    var openTVCommand = {
+        execute() {
+            console.log('open TV')
+        }
+    };
+
+    var openSoundCommand = {
+        execute() {
+            console.log('open Sound')
+        }
+    };
+
+    var macroCommand1 = MacroCommand()
+    macroCommand1.add(openTVCommand)
+    macroCommand1.add(openSoundCommand)
+
+    var closeDoorCommand = {
+        execute() {
+            console.log('close door')
+        }
+    };
+
+    var openPcCommand = {
+        execute() {
+            console.log('open Pc Computer')
+        }
+    };
+
+    var openQQCommand = {
+        execute() {
+            console.log('login QQ')
+        }
+    }
+
+    var macroCommand2 = MacroCommand()
+    macroCommand2.add(closeDoorCommand)
+    macroCommand2.add(openPcCommand)
+    macroCommand2.add(openQQCommand)
+
+
+    /*** super command ***/
+    var macroCommand = MacroCommand()
+    macroCommand.add(openAcCommand)
+    macroCommand.add(macroCommand1)
+    macroCommand.add(macroCommand2)
+
+    /***  set super command ***/
+    var setCommand = (function(command){
+        document.getElementById('btn').onclick = function() {
+            command.execute()
+        }
+    })(macroCommand)
+</script>
+</html>
