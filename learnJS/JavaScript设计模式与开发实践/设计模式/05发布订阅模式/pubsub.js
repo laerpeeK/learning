@@ -2,13 +2,13 @@ var Event = (function(){
     var clientList = {},
         listen,
         trigger,
-        remove
+        remove;
 
     listen = function(key, fn){
         if( ! clientList[key]) {
             clientList[key] = []
         }
-        clientList[key].push(key)
+        clientList[key].push(fn)
     }
 
     trigger = function() {
@@ -44,5 +44,4 @@ var Event = (function(){
         trigger,
         remove
     }
-
-    })()
+})()

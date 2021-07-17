@@ -5,16 +5,20 @@
 然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）；
 最后发布消息的时候，发布者会遍历这个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册，挨个发短信）。
 另外，我们还可以往回调函数里填入一些参数，订阅者可以接收这些参数。
+
+推模型是指在事件发生时，发布者一次性把所有更改的状态和数据都推送给订阅者。
+拉模型不同的地方是，发布者仅仅通知订阅者事件已经发生了，此外发布者要提供一些公开的接口供订阅者来主动拉取数据。
+
  */
 var event = {
     clientList: [],
-    listen: function(key, fn) {
+    listen: function(key, fn) { //订阅
         if(!this.clientList[key]) {
             this.clientList[key] = []
         }
         this.clientList[key].push(fn) //订阅地消息添加至缓存列表
     },
-    trigger: function(){
+    trigger: function(){  //发布
         var key = Array.prototype.shift.call(arguments),
             fns = this.clientList[key]
         if(!fns || fns.length === 0){
@@ -63,4 +67,6 @@ salesOffices.listen('squareMeter100', function(price) {
 
 salesOffices.trigger('squareMeter88', 200000)
 salesOffices.trigger('squareMeter100', 300000)
+
+
 

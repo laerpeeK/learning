@@ -4,14 +4,14 @@ var Event = (function(){
         _default = 'default';
 
     Event = function(){
-        var _listen,
-            _trigger,
-            _remove,
+        var _listen, //订阅
+            _trigger, //发布
+            _remove, //移除
             _slice = Array.prototype.slice,
             _shift = Array.prototype.shift,
             _unshift = Array.prototype.unshift,
-            namespaceCache = [],
-            _create,
+            namespaceCache = [], //命名空间
+            _create, //创建命名空间
             find,
             each = function(ary, fn) {
                 var ret;
@@ -130,3 +130,5 @@ var Event = (function(){
     }();
     return Event;
 })()
+
+console.log(Event)
