@@ -33,7 +33,7 @@ module.exports = {
     module: {
         rules: [
             {
-                //在package.json中eslintConfig -- airbnb
+                //在package.json中eslintConfig -- JavaScript书写规范(airbnb)
                 test: /\.js$/,
                 exclude: /node_modules/,
                 enforce: "pre",

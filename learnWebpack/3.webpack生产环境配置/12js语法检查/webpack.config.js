@@ -14,10 +14,10 @@ module.exports = {
             注意：只检查自己写的源代码，不检查第三方库
             设置检查规则： eslint-loader eslint
                 package.json[eslintConfig]中设置
-                airbnb
+                JavaScript书写规范(airbnb)
             顺序：1.排除node_modules,引入eslint-loader
                  2.在packjson   "eslintConfig": {
-                                    "extends": "airbnb-base"
+                                    "extends": "JavaScript书写规范(airbnb)-base"
                                 }
              */
             {
