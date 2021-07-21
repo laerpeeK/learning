@@ -43,3 +43,9 @@ a||b：左操作数为假值时，返回右操作数，否则返回左操作数�
 
 判断某个元素是否存在时：if(attr)写成if(!!attr)更加严谨
 
+AOP： Aspect Oriented Programming [面向切面编程](https://baike.baidu.com/item/面向切面编程/6016335)，通过[预编译](https://baike.baidu.com/item/预编译/3191547)方式和运行期间动态代理实现程序功能的统一维护的一种技术。
+
+
+
+
+
