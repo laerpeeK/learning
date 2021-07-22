@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">button</button>
+
+<script>
+    Function.prototype.before = function(beforeFn) {
+        var _self = this;
+        return function() {
+            // 执行新函数，且保证this不被劫持，新函数接受的参数
+            // 也会被原封不动地传入原函数，新函数在原函数之前执行
+            beforeFn.apply(this, arguments)
+            // 执行原函数并返回原函数的执行结果,
+            // 并且保证this不被劫持
+            return _self.apply(this, arguments)
+        }
+    }
+    document.getElementById = document.getElementById.before(function(){
+        alert('beforeFn')
+    })
+    var btn = document.getElementById('btn')
+    console.log('btn')
+
+
+    Function.prototype.after = function(afterFn) {
+        var _self = this;
+        return function(){
+            var ret = _self.apply(this, arguments)
+            afterFn.apply(this, arguments)
+            return ret
+        }
+    }
+
+    window.onload = function() {
+        alert(1)
+    }
+    window.onload = (window.onload || function(){}).after(function() {
+        alert(2)
+    }).after(function() {
+        alert(3)
+    }).after(function() {
+        alert(4)
+    })
+</script>
+</body>
+</html>
