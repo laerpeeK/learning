@@ -1,4 +1,8 @@
 //这种在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程
+/*
+因为函数通过Function.prototype.before 或者Function.prototype.after 被装
+饰之后，返回的实际上是一个新的函数，如果在原函数上保存了一些属性，那么这些属性会丢失。
+ */
 Function.prototype.before = function(beforeFn) {
     return () => {
         // 执行新函数，且保证this不被劫持，新函数接受的参数
