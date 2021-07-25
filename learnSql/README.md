@@ -13,19 +13,13 @@ FROM：表
 WHERE: 判断 
 
   * = > <
-
   *  LIKE: 
-
-    ​	%any number of char
-
-    ​	_ single char
-
-	* AND, OR,  IN,  NOT IN
-
-	* BETWEEN  AND
-	* REGEXP
-
-* IS NOT NULL
+    	* %any number of char
+    	* _ single char
+    	* AND, OR,  IN,  NOT IN
+    	* BETWEEN  AND
+    	* REGEXP
+    	* IS NOT NULL
 
 ORDER BY： 排序 DESC降序
 
