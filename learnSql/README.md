@@ -14,12 +14,12 @@ WHERE: 判断
 
   * = > <
   *  LIKE: 
-    	* %any number of char
-    	* _ single char
-    	* AND, OR,  IN,  NOT IN
-    	* BETWEEN  AND
-    	* REGEXP
-    	* IS NOT NULL
+        	* %any number of char
+        	* _ single char
+        	* AND, OR,  IN,  NOT IN
+        	* BETWEEN  AND
+        	* REGEXP
+        	* IS NOT NULL
 
 ORDER BY： 排序 DESC降序
 
@@ -32,4 +32,14 @@ JOIN 表 ON 条件 (简写)
 跨数据库连接： 不是当前环境使用的数据库，表前缀要加数据库名
 
 自连接： 给表取不同名字
+
+多表连接：多个JOIN ON
+
+复合连接条件：JOIN ON AND
+
+隐式连接：FROM tableA , tableB WHERE condition
+
+外连接：LEFT/RIGHT JOIN ON
+
+
 
