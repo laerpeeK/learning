@@ -1,0 +1,25 @@
+function classify(req) {
+  var result = {}	
+  result['默认'] = []
+  for(let i in req) {
+    if(req[i]['series_classification'] == null) {
+      req[i]['series_classification'] = '默认'
+      result['默认'].push(req[i])
+    } else {
+      if(!result[req[i]['series_classification']]) {
+        result[req[i]['series_classification']] = []
+      }
+      result[req[i]['series_classification']].push(req[i])
+    }
+  }
+  var final = []
+  for(var i in result) {
+    var item = {}
+    item['name'] = i
+    item['series'] = Object.assign(result[i])
+    final.push(item)  
+  }
+  return final
+}
+
+return {classify_series: classify(series)}
