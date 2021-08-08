@@ -43,7 +43,7 @@ module.exports = {
                 ]
             },
             {
-                //在package.json中eslintConfig -- JavaScript书写规范(airbnb)
+                //在package.json中eslintConfig -- JavaScriptStandard(airbnb)
                 test: /\.js$/,
                 exclude: /node_modules/,
                 enforce: "pre",
