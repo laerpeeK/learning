@@ -6,7 +6,7 @@
 
 
 
-**查**
+### **查**
 
 USE: 选择数据库
 
@@ -58,6 +58,52 @@ USING： JOIN USING（）
 UNIONS：用于合并两个或多个 SELECT 语句的结果集
 
 
+
+### 增：
+
+插入单行：INSERT INTO （）
+
+VALUES（）
+
+插入多行：INSERT INTO table ()
+
+VALUES (),
+
+​			()
+
+插入分层行：
+
+​	INSERT INTO table
+
+​	VALUES(),()
+
+创建表复制：
+
+​	INSERT INTO table
+
+​	SELECT 
+
+   FROM table
+
+​	WHERE
+
+
+
+### 改：
+
+UPDATE table
+
+SET a = xxx,b = ccc
+
+WHERE 
+
+
+
+### 删：
+
+子查询是在另一端SQL语句里的选择语句
+
+DELETE  FROM
 
 
 
